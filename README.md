@@ -6,6 +6,12 @@ This is a small group of scripts to help handle your clipboard.
 They are aimed for people who uses X but like terminal applications.
 **It only handle text clipboard entries.**
 
+It handles selection 'CLIPBOARD' and 'PRIMARY' as one.
+So what you copy with the mouse can be pasted with the keyboard and the other way round.
+
+Tested only with Python 3.5.
+
+
 These scripts were somehow inspired on [Clipit](https://github.com/shantzu/ClipIt) and [AutoKey](https://github.com/guoci/autokey-py3).
 
 ![Screenshot: show_history popup opened](https://raw.githubusercontent.com/andresmrm/cliptopia/master/img/example.png)
@@ -25,13 +31,34 @@ These scripts were somehow inspired on [Clipit](https://github.com/shantzu/ClipI
 ## Installation
 
 Clone or copy this repository and install python dependencies listed in `requirements.txt`.
-Some of them doesn't seem to work well in a virtualenv... =/
+But `pygobject` and `dbus-python` seem not to be working with `pip`, so you'll have to install them with your distro package manager. =/
+
+For Arch Linux that would be:
+
+    # pacman python-gobject dbus-glib python-dbus
+    
+If you also want to install the other deps with package manager:
+    
+    # pacman python-docopt python-urwid
+    
+And, in Arch Linux, `python-xlib` for Python 3 is only in AUR.
+One way to install it would be:
+
+    # yaourt python-xlib
+    
+    
+### More one dependency...
 
 You'll also need to install `wmctrl` (it's a program, not a Python lib) for "smart focus" functionality (see below).
 
+Again, in Arch Linux:
+
+    # pacman wmctrl
+
 ## Use
 
-I'll tell how I use the scripts, so you can see if they are useful for you.
+Still reading?
+Ok, I'll tell how I use the scripts, so you can see if they are useful for you:
 
 ### Smart Copy&Paste
 
