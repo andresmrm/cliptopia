@@ -45,6 +45,8 @@ class ButtonClean(urwid.Button):
 
 class Cui(object):
 
+    '''Interface'''
+
     def __init__(self, window):
         self.go_to_window = window
         self.setup_service()
@@ -72,23 +74,27 @@ class Cui(object):
         self.main = urwid.MainLoop(
             self.root,
             palette=palette,
-            unhandled_input=self.hotkeys
+            unhandled_input=self.handle_keys
         )
         self.main.run()
 
     def setup_service(self):
+        '''Prepare DBus service for use'''
         bus = dbus.SessionBus()
         self.service = bus.get_object(SERVICE_NAME, SERVICE_PATH)
 
     def setup_history(self):
+        '''Get history through DBUS and store'''
         method = self.service.get_dbus_method('get_history', SERVICE_NAME)
         self.history = method()
 
     def set_clipboard(self, text):
+        '''Set clipboard through DBUS'''
         method = self.service.get_dbus_method('set_clipboard', SERVICE_NAME)
-        return method(text)
+        method(text)
 
     def list_items(self):
+        '''Create a menu button for each history entry'''
         self.items = []
         symbols = self.generate_symbols()
         self.hot_items = {}
@@ -97,34 +103,40 @@ class Cui(object):
             urwid.connect_signal(button, 'click', self.item_chosen)
             b = urwid.AttrMap(button, 'bold', focus_map='reversed-bold')
             if symbols:
+                # hotkey for this history entry
                 s = symbols.pop(0)
                 self.hot_items[s] = button
                 t = urwid.Text(s)
             else:
                 t = urwid.Text('-')
             self.items.append(urwid.Columns([(2, t), b]))
-        # self.main.draw_screen()
 
     def generate_symbols(self):
+        '''Return symbols to be used for the hotkeys'''
         return [i for i in string.ascii_letters + string.digits]
         # self.symbols = string.punctuation
         # self.symbols = string.printable
 
-    def hotkeys(self, key):
+    def handle_keys(self, key):
+        '''Handle keyboard input'''
         hot_item = self.hot_items.get(key)
         if hot_item:
+            # select a history entry based on its hotkey
             urwid.emit_signal(hot_item, 'click', hot_item)
         elif key in ('esc',):
             self.close()
 
     def item_chosen(self, button):
+        '''Set clipboard to selected history entry and finish'''
         text = button.get_label()
         self.set_clipboard(text)
         self.close()
 
     def close(self):
+        '''Finish'''
         # TODO: use Xlib?
         if self.go_to_window:
+            # Try to set window focus
             subprocess.call(('wmctrl -ia %s' % int(self.go_to_window)).split())
         raise urwid.ExitMainLoop()
 

@@ -26,10 +26,13 @@ display = Display()
 
 
 def get_focused():
+    '''Return currently focused window'''
     return display.get_input_focus().focus
 
 
 def is_shifted(classes):
+    '''Return True only if any of the classes is among the
+    ones that should copy|paste with Ctrl+Shift+c|v'''
     for c in classes:
         if c in SHIFTED_COPY_PASTE_CLASSES:
             return True
@@ -37,18 +40,21 @@ def is_shifted(classes):
 
 
 def copy_from_focused():
+    '''Copy text from focused window'''
     focus = get_focused()
     kh.copy(focus, is_shifted(focus.get_wm_class()))
     display.flush()
 
 
 def paste_to_focused():
+    '''Paste text to focused window'''
     focus = get_focused()
     kh.paste(focus, is_shifted(focus.get_wm_class()))
     display.flush()
 
 
 def get_mouse_pos():
+    '''Return current mouse position (x,y)'''
     data = display.screen().root.query_pointer()._data
     return data["root_x"], data["root_y"]
 
@@ -59,14 +65,18 @@ if __name__ == '__main__':
     kh = KeyHandler(display)
 
     if arguments['copy']:
+        # Copy from focused window
         copy_from_focused()
     elif arguments['paste']:
+        # Paste to focused window
         paste_to_focused()
     elif arguments['focused']:
+        # Print focused window id
         print(get_focused().id)
     elif arguments['daemon']:
-        import clipboard
-        clipboard.Manager().run()
+        # Start daemon
+        from clipboard import Clipboard
+        Clipboard().run()
     elif arguments['history']:
         # print history?
         pass

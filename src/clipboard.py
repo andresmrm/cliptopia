@@ -9,7 +9,9 @@ import comm
 from configs import HISTORY_MAX_SIZE
 
 
-class Manager():
+class Clipboard():
+
+    '''Handle clipboard'''
 
     def __init__(self):
         self.clip_keyboard = Gtk.Clipboard.get(Gdk.SELECTION_CLIPBOARD)
@@ -18,9 +20,11 @@ class Manager():
         self.history = History()
 
     def get_history(self):
+        '''Return history'''
         return self.history.get()
 
-    def clip_changed(self, clip, void):
+    def clipboard_changed(self, clip, void):
+        '''Callback for clipboard changed event'''
         Gdk.threads_enter()
         text = clip.wait_for_text()
         Gdk.threads_leave()
@@ -41,6 +45,15 @@ class Manager():
         #     raise Exception("No text found in X selection")
 
     def set_clipboard(self, text, selection_type=None, protected=False):
+        '''Set clipboards to text.
+
+        selection_type is used to don't set one of the two clipboards.
+        e.g.: Ctrl+c was pressed, so CLIPBOARD is already set to text,
+        only PRIMARY must be set to text.
+
+        protected is used to avoid double calls to threads_enter, when
+        the parent function already did it.'''
+
         if not protected:
             Gdk.threads_enter()
         if selection_type != 'CLIPBOARD':
@@ -51,10 +64,12 @@ class Manager():
             Gdk.threads_leave()
 
     def connect_to_clipboard_signals(self):
-        self.clip_keyboard.connect('owner-change', self.clip_changed)
-        self.clip_mouse.connect('owner-change', self.clip_changed)
+        '''Connect to clipboard change events'''
+        self.clip_keyboard.connect('owner-change', self.clipboard_changed)
+        self.clip_mouse.connect('owner-change', self.clipboard_changed)
 
     def run(self):
+        '''Start loop to monitor clipboard changes'''
         self.connect_to_clipboard_signals()
         print('starting cliptopia daemon')
 
@@ -79,11 +94,16 @@ class Manager():
 
 class History():
 
+    '''Store a limited number of items, removing an old one if it's equal
+    to a new one'''
+
     def __init__(self):
         self.history = []
         self.maxsize = HISTORY_MAX_SIZE
 
     def add(self, data):
+        '''Add an item to the history'''
+
         # Keep only one instance of each value
         try:
             self.history.remove(data)
@@ -98,4 +118,5 @@ class History():
             self.history.pop(0)
 
     def get(self):
+        '''Return history'''
         return self.history

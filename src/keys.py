@@ -223,6 +223,7 @@ class KeyHandler():
         window.send_event(ev)
 
     def tap_key(self, key, window, modifiers):
+        '''Press and release a key'''
         key_code = self.lookupKeyCode(key)
         self.press(key_code, window, modifiers)
         self.release(key_code, window, modifiers)
@@ -230,7 +231,7 @@ class KeyHandler():
         # xtest.fake_input(window, X.KeyRelease, key_code)
 
     def cs_tap(self, key, window, shift):
-        '''Send a key adding Control and maybe Shift.'''
+        '''Send a key adding Ctrl and maybe Shift.'''
         modifiers = self.modMasks[Key.CONTROL]
         if shift:
             modifiers |= self.modMasks[Key.SHIFT]
@@ -238,7 +239,9 @@ class KeyHandler():
         self.tap_key(key, window, modifiers)
 
     def paste(self, window, shift=False):
+        '''Send a Ctrl(+Shift)+v to the window'''
         self.cs_tap('v', window, shift)
 
     def copy(self, window, shift=False):
+        '''Send a Ctrl(+Shift)+c to the window'''
         self.cs_tap('c', window, shift)

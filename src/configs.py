@@ -4,7 +4,7 @@
 import os
 
 
-# Guess default configs base on ENV vars.
+# Prepare to guess default configs base on ENV vars.
 terminal = os.environ['TERMINAL']
 shell = os.environ['SHELL']
 
