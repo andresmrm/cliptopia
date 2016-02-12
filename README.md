@@ -35,16 +35,16 @@ But `pygobject` and `dbus-python` seem not to be working with `pip`, so you'll h
 
 For Arch Linux that would be:
 
-    # pacman python-gobject dbus-glib python-dbus
+    # pacman -S python-gobject dbus-glib python-dbus
     
 If you also want to install the other deps with package manager:
     
-    # pacman python-docopt python-urwid
+    # pacman -S python-docopt python-urwid
     
 And, in Arch Linux, `python-xlib` for Python 3 is only in AUR.
 One way to install it would be:
 
-    # yaourt python-xlib
+    # yaourt -S python-xlib
     
     
 ### More one dependency...
@@ -53,7 +53,7 @@ You'll also need to install `wmctrl` (it's a program, not a Python lib) for "sma
 
 Again, in Arch Linux:
 
-    # pacman wmctrl
+    # pacman -S wmctrl
 
 ## Usage
 
