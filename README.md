@@ -8,6 +8,8 @@ They are aimed for people who uses X but like terminal applications.
 
 These scripts were somehow inspired on [Clipit](https://github.com/shantzu/ClipIt) and [AutoKey](https://github.com/guoci/autokey-py3).
 
+![Screenshot: show_history popup opened](https://raw.githubusercontent.com/andresmrm/cliptopia/master/img/example.png)
+
 ## Features
 
 - Clipboard history daemon (accessible through dbus (is this safe?))
