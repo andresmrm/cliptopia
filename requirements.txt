@@ -1,0 +1,6 @@
+python3-xlib
+dbus-python # not working in virtualenv (2016-02-12)
+python-gobject # not working in virtualenv (2016-02-12)
+# pgi # for running gobject inside a virtualenv
+urwid
+docopt
