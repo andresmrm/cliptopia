@@ -4,7 +4,7 @@
 '''Be happy with your clipboard.
 
 Usage:
-    ./main.py [options] [copy|paste|daemon|focused]
+    ./cliptopia.py [options] [copy|paste|daemon|focused]
 
 copy: Copy using Ctrl(+Shift)+c depending on window class.
 paset: Paste using Ctrl(+Shift)+v depending on window class.

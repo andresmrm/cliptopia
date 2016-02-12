@@ -15,7 +15,6 @@ class Manager():
         self.clip_keyboard = Gtk.Clipboard.get(Gdk.SELECTION_CLIPBOARD)
         self.clip_mouse = Gtk.Clipboard.get(Gdk.SELECTION_PRIMARY)
         self.last_text = None
-        print('CRIA!')
         self.history = History()
 
     def get_history(self):
@@ -57,7 +56,7 @@ class Manager():
 
     def run(self):
         self.connect_to_clipboard_signals()
-        print('starting daemon')
+        print('starting cliptopia daemon')
 
         comm.init_dbus_service(self)
         # m = comm.MyObject()
