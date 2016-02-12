@@ -4,15 +4,17 @@
 
 This is a small group of scripts to help handle your clipboard.
 They are aimed for people who uses X but like terminal applications.
-**It only handle text clipboard entries.**
+
+It only handle text clipboard entries.
 
 It handles selection 'CLIPBOARD' and 'PRIMARY' as one.
 So what you copy with the mouse can be pasted with the keyboard and the other way round.
 
 Tested only with Python 3.5.
 
+These scripts were somehow inspired by [Clipit](https://github.com/shantzu/ClipIt) and [AutoKey](https://github.com/guoci/autokey-py3).
 
-These scripts were somehow inspired on [Clipit](https://github.com/shantzu/ClipIt) and [AutoKey](https://github.com/guoci/autokey-py3).
+---
 
 ![Screenshot: show_history popup opened](https://raw.githubusercontent.com/andresmrm/cliptopia/master/img/example.png)
 
