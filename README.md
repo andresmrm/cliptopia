@@ -4,7 +4,7 @@
 
 This is a small group of scripts to help handle your clipboard.
 They are aimed for people who uses X but like terminal applications.
-**It only handle text clipboard entries.**.
+**It only handle text clipboard entries.**
 
 These scripts were somehow inspired on [Clipit](https://github.com/shantzu/ClipIt) and [AutoKey](https://github.com/guoci/autokey-py3).
 
@@ -37,7 +37,7 @@ To avoid having to use `Ctrl+c` to copy a text from Firefox and `Ctrl+Shift+v` t
 I have a system wide hotkey that calls `cliptopia.py copy` and another for `cliptopia.py paste`.
 This 2 hotkeys will use `Ctrl+Shift+c|v` or `Ctrl+c|v` according to which window is on focus.
 
-You need to configure which window classes should receive a `Ctrl+Shift`.
+You need to configure which window classes should receive a `Ctrl+Shift+c|v` instead of just `Ctrl+c|v`.
 See config section below.
 
 ### Clipboard History
