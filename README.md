@@ -20,7 +20,7 @@ These scripts were somehow inspired by [Clipit](https://github.com/shantzu/ClipI
 
 ## Features
 
-- Clipboard history daemon (accessible through dbus (is this safe?))
+- Clipboard history daemon accessible through dbus (**is this safe?**)
 - Clipboard history display and selection (using [urwid](http://urwid.org))
 - Smart copy&paste (automatically handling of `Ctrl+Shift+c|v` for terminals and `Ctrl+c|v` for other applications)
 
