@@ -55,7 +55,7 @@ Again, in Arch Linux:
 
     # pacman wmctrl
 
-## Use
+## Usage
 
 Still reading?
 Ok, I'll tell how I use the scripts, so you can see if they are useful for you:
