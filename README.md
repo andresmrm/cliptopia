@@ -14,7 +14,7 @@ Tested only with Python 3.5.
 
 These scripts were somehow inspired by [Clipit](https://github.com/shantzu/ClipIt) and [AutoKey](https://github.com/guoci/autokey-py3).
 
----
+Using current example interface it can looks like this:
 
 ![Screenshot: show_history popup opened](https://raw.githubusercontent.com/andresmrm/cliptopia/master/img/example.png)
 
